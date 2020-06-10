@@ -1,1 +1,1 @@
-Cat-Dog-Intifier
+Cat-Dog-Identifier
