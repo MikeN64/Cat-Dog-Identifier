@@ -30,5 +30,21 @@ def create_train_data():
 
     return training_data
 
+def process_test_data():
+    testing_data = []
+    for img in tqdm(os.listdir(TEST_DIR)):
+        path = os.path.join(TEST_DIR, img)
+        img_num = img.split(".")[0]
+        img = cv2.imread(path, cv2.IMREAD_GRAYSCALE) 
+        img = cv2.resize(img, (IMG_SIZE, IMG_SIZE)) 
+        testing_data.append([np.array(img), img_num]) 
 
-create_train_data()
+    shuffle(testing_data) 
+    np.save('test_data.npy', testing_data) 
+
+    return testing_data 
+
+
+train_data = create_train_data()
+test_data = process_test_data()
+print(test_data)
